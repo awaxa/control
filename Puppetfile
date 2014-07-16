@@ -38,3 +38,7 @@ mod 'r10k',
 	:git => 'https://github.com/acidprime/r10k.git',
 	:ref => 'v2.2.4'
 
+mod 'ntp',
+	:git => 'https://github.com/puppetlabs/puppetlabs-ntp.git',
+	:ref => '3.0.4'
+
