@@ -42,3 +42,6 @@ mod 'ntp',
 	:git => 'https://github.com/puppetlabs/puppetlabs-ntp.git',
 	:ref => '3.0.4'
 
+mod 'pe_console_timeout',
+	:git => 'https://github.com/joshbeard/puppet-pe_console_timeout.git',
+	:ref => 'v0.0.4'
