@@ -14,6 +14,10 @@ mod 'gcc',
 	:git => 'https://github.com/puppetlabs/puppetlabs-gcc.git',
 	:ref => '0.2.0'
 
+mod 'git',
+	:git => 'https://github.com/puppetlabs/puppetlabs-git.git',
+	:ref => '0.2.0'
+
 mod 'pe_gem',
 	:git => 'https://github.com/puppetlabs/puppetlabs-pe_gem.git',
 	:ref => '0.0.1'
