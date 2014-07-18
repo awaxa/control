@@ -9,4 +9,9 @@ class profile::base {
       }
     }
   }
+  package { [
+    'tree',
+  ]:
+    ensure => 'latest',
+  }
 }
