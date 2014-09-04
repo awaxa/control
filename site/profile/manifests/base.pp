@@ -1,5 +1,5 @@
 class profile::base {
-  include '::ntp'
+  include ntp
   case $::osfamily {
     'redhat': {
       file_line { 'root bash_profile PATH':
@@ -12,6 +12,6 @@ class profile::base {
   package { [
     'tree',
   ]:
-    ensure => 'latest',
+    ensure => latest,
   }
 }

@@ -1,7 +1,7 @@
 class profile::puppet::r10k {
-  include '::request_manager'
+  include request_manager
   file { "${::settings::confdir}/environments":
-    ensure => 'directory',
+    ensure => directory,
   }
   class { '::r10k':
     version                => '1.3.0',
@@ -17,7 +17,7 @@ class profile::puppet::r10k {
     notify    => Service['pe-httpd'],
   }
   ini_setting { 'puppet.conf environmentpath':
-    ensure  => 'present',
+    ensure  => present,
     path    => "${::settings::confdir}/puppet.conf",
     section => 'main',
     setting => 'environmentpath',
