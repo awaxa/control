@@ -1,4 +1,4 @@
-class profile::puppet::r10k {
+class profile::pe::r10k {
   include request_manager
   file { "${::settings::confdir}/environments":
     ensure => directory,

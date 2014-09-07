@@ -1,4 +1,4 @@
-class profile::puppet::console {
+class profile::pe::console {
   include request_manager
   class { 'pe_console_timeout':
     timeout_interval => '3600',
