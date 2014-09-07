@@ -9,6 +9,6 @@
 # specified in the console for that node.
 
 node default {
-  notify { 'node has not been classified': }
+  notify { "node '${::clientcert}' has not been classified": }
   include profile::base
 }
