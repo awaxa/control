@@ -1,4 +1,4 @@
-### an example r10k control repository
+### my r10k control repository
 
 ## requirements
 - [Puppet Enterprise](http://puppetlabs.com/puppet/puppet-enterprise)
