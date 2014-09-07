@@ -6,4 +6,9 @@ class profile::base {
   ]:
     ensure => latest,
   }
+  firewall { '100 allow ssh access':
+    port   => '22',
+    proto  => 'tcp',
+    action => 'accept',
+  }
 }
