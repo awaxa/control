@@ -10,4 +10,5 @@
 
 node default {
   notify { 'node has not been classified': }
+  include profile::base
 }
