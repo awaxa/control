@@ -41,5 +41,5 @@ Package {
 # specified in the console for that node.
 
 node default {
-  notify { "${clientcert} has not been classified with a role": }
+  notify { 'node has not been classified': }
 }
