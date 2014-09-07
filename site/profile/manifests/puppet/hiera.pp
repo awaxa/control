@@ -1,7 +1,7 @@
 class profile::puppet::hiera {
   include request_manager
   class { '::hiera':
-    datadir   => "${::settings::confdir}/environments/%{environment}/hieradata",
+    datadir   => "\"${::settings::confdir}/environments/%{environment}/hieradata\"",
     hierarchy => [
       'nodes/%{clientcert}',
       '%{environment}',
