@@ -49,3 +49,7 @@ mod 'ntp',
 mod 'pe_console_timeout',
   :git => 'https://github.com/joshbeard/puppet-pe_console_timeout.git',
   :ref => 'v0.0.4'
+
+mod 'firewall',
+  :git => 'https://github.com/puppetlabs/puppetlabs-firewall.git',
+  :ref => '1.1.3'
