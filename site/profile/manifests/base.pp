@@ -5,7 +5,7 @@ class profile::base {
   package { [
     'tree',
   ]:
-    ensure => latest,
+    ensure => present,
   }
   firewall { '100 allow ssh access':
     port   => '22',
