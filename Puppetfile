@@ -8,7 +8,7 @@ mod 'stdlib',
 
 mod 'ruby',
   :git => 'https://github.com/puppetlabs/puppetlabs-ruby.git',
-  :ref => '0.2.1'
+  :ref => '0.3.0'
 
 mod 'gcc',
   :git => 'https://github.com/puppetlabs/puppetlabs-gcc.git',
@@ -28,7 +28,7 @@ mod 'make',
 
 mod 'inifile',
   :git => 'https://github.com/puppetlabs/puppetlabs-inifile.git',
-  :ref => '1.1.0'
+  :ref => '1.1.4'
 
 mod 'vcsrepo',
   :git => 'https://github.com/puppetlabs/puppetlabs-vcsrepo.git',
@@ -40,11 +40,11 @@ mod 'portage',
 
 mod 'r10k',
   :git => 'https://github.com/acidprime/r10k.git',
-  :ref => 'v2.2.4'
+  :ref => 'v2.3.0'
 
 mod 'ntp',
   :git => 'https://github.com/puppetlabs/puppetlabs-ntp.git',
-  :ref => '3.0.4'
+  :ref => '3.2.1'
 
 mod 'pe_console_timeout',
   :git => 'https://github.com/joshbeard/puppet-pe_console_timeout.git',
