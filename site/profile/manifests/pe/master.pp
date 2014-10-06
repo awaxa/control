@@ -2,13 +2,16 @@ class profile::pe::master {
 
   include request_manager # contains Service['pe-httpd']
 
-  class { 'profile::r10k': }        ~> Service['pe-httpd']
-  Class['r10k::config']             ~> Service['pe-httpd']
+  class { 'profile::r10k': } ~> Service['pe-httpd']
+  Class['r10k::config'] ~> Service['pe-httpd']
 
-  class { 'profile::hiera': }       ~> Service['pe-httpd']
-  Class['::hiera']                  ~> Service['pe-httpd']
+  class { 'profile::hiera': } ~> Service['pe-httpd']
+  Class['::hiera'] ~> Service['pe-httpd']
 
-  class { 'profile::pe::console': } ~> Service['pe-httpd']
+  class { 'pe_console_timeout':
+    timeout_interval => '3600',
+    notify           => Service['pe-httpd']
+  }
 
   include profile::pe::path
 
@@ -25,6 +28,11 @@ class profile::pe::master {
   }
   firewall { '100 allow mcollective access':
     port   => '61613',
+    proto  => 'tcp',
+    action => 'accept',
+  }
+  firewall { '100 allow https access':
+    port   => '443',
     proto  => 'tcp',
     action => 'accept',
   }
