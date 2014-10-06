@@ -3,6 +3,7 @@ class profile::base {
   include profile::firewall
   package { [
     'tree',
+    'vim',
   ]:
     ensure => present,
   }
