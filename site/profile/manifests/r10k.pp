@@ -3,15 +3,15 @@ class profile::r10k {
     ensure => directory,
   }
   class { '::r10k':
-    version                => '1.3.0',
-    sources                => {
-      'puppet'             => {
-        'remote'           => 'https://github.com/awaxa/control.git',
-        'basedir'          => "${::settings::confdir}/environments",
-        'prefix'           => false,
+    version       => '1.3.0',
+    purgedirs     => ["${::settings::confdir}/environments"],
+    sources       => {
+      'puppet'    => {
+        'remote'  => 'https://github.com/awaxa/control.git',
+        'basedir' => "${::settings::confdir}/environments",
+        'prefix'  => false,
       }
     },
-    purgedirs => ["${::settings::confdir}/environments"],
   }
   ini_setting { 'puppet.conf environmentpath':
     ensure  => present,
