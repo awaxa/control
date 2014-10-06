@@ -4,7 +4,6 @@ class profile::r10k {
   }
   class { '::r10k':
     version                => '1.3.0',
-    include_prerun_command => true,
     sources                => {
       'puppet'             => {
         'remote'           => 'https://github.com/awaxa/control.git',
