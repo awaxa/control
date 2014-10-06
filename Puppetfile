@@ -53,3 +53,7 @@ mod 'pe_console_timeout',
 mod 'firewall',
   :git => 'https://github.com/puppetlabs/puppetlabs-firewall.git',
   :ref => '1.1.3'
+
+mod 'apt',
+  :git => 'https://github.com/puppetlabs/puppetlabs-apt.git',
+  :ref => '1.6.0'
