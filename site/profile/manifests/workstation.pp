@@ -1,7 +1,11 @@
 class profile::workstation {
-  include apt
+  class { 'apt':
+    purge_sources_list_d => true,
+  }
+
   package { 'ubuntu-desktop':
     ensure => present,
   }
+
   include profile::workstation::chrome
 }
