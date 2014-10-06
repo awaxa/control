@@ -1,5 +1,4 @@
-class profile::pe::master::hiera {
-  include request_manager
+class profile::hiera {
   class { '::hiera':
     datadir   => "\"${::settings::confdir}/environments/%{environment}/hieradata\"",
     hierarchy => [
@@ -7,6 +6,5 @@ class profile::pe::master::hiera {
       '%{environment}',
       'common',
     ],
-    notify => Service['pe-httpd'],
   }
 }

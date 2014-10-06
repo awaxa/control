@@ -1,5 +1,4 @@
-class profile::pe::master::r10k {
-  include request_manager
+class profile::r10k {
   file { "${::settings::confdir}/environments":
     ensure => directory,
   }
@@ -14,7 +13,6 @@ class profile::pe::master::r10k {
       }
     },
     purgedirs => ["${::settings::confdir}/environments"],
-    notify    => Service['pe-httpd'],
   }
   ini_setting { 'puppet.conf environmentpath':
     ensure  => present,
@@ -22,6 +20,5 @@ class profile::pe::master::r10k {
     section => 'main',
     setting => 'environmentpath',
     value   => "${::settings::confdir}/environments",
-    notify  => Service['pe-httpd'],
   }
 }
