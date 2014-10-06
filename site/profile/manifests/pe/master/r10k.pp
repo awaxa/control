@@ -8,7 +8,7 @@ class profile::pe::master::r10k {
     include_prerun_command => true,
     sources                => {
       'puppet'             => {
-        'remote'           => '/vagrant/control',
+        'remote'           => 'https://github.com/awaxa/control.git',
         'basedir'          => "${::settings::confdir}/environments",
         'prefix'           => false,
       }
