@@ -1,6 +1,9 @@
 class profile::pe::master {
 
-  include request_manager # contains Service['pe-httpd']
+  service { 'pe-httpd':
+    ensure => running,
+    enable => true,
+  }
 
   class { 'profile::r10k': } ~> Service['pe-httpd']
   Class['r10k::config'] ~> Service['pe-httpd']
