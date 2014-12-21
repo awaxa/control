@@ -1,2 +1,3 @@
-.vagrant
-.pe_build
+/.vagrant
+/.pe_build
+/modules
