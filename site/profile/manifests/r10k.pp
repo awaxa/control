@@ -3,7 +3,7 @@ class profile::r10k {
     ensure => directory,
   }
   class { '::r10k':
-    version       => '1.3.4',
+    version       => '1.4.0',
     purgedirs     => ["${::settings::confdir}/environments"],
     sources       => {
       'puppet'    => {
