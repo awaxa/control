@@ -1,4 +1,6 @@
-class profile::workstation inherits profile::base {
+class profile::workstation {
+  include profile::base
+
   class { 'apt':
     purge_sources_list_d => true,
   }
@@ -9,8 +11,9 @@ class profile::workstation inherits profile::base {
     key_server => 'pgp.mit.edu',
   }
 
+  # my laptop should disallow sshd access
   if $::is_virtual == 'false' {
-    Firewall['100 allow ssh access'] {
+    Firewall <| title == '100 allow ssh access' |> {
       ensure => absent,
     }
   }
