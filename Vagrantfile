@@ -38,11 +38,13 @@ Vagrant.configure('2') do |config|
 
   config.vm.define :workstation, autostart: false do |workstation|
     workstation.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
-    workstation.vm.provider 'virtualbox' do |vb|
-      vb.gui = true
-    end
-    workstation.vm.provider 'vmware_fusion' do |v|
-      v.gui = true
+    unless ENV['GUI'] == 'true'
+      workstation.vm.provider 'virtualbox' do |vb|
+        vb.gui = true
+      end
+      workstation.vm.provider 'vmware_fusion' do |v|
+        v.gui = true
+      end
     end
     workstation.vm.provision 'shell', path: 'scripts/debian_poss.sh'
     workstation.vm.provision 'shell',
