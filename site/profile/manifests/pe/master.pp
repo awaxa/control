@@ -11,11 +11,6 @@ class profile::pe::master {
   class { 'profile::hiera': } ~> Service['pe-httpd']
   Class['::hiera'] ~> Service['pe-httpd']
 
-  class { 'pe_console_timeout':
-    timeout_interval => '3600',
-    notify           => Service['pe-httpd']
-  }
-
   include profile::pe::path
 
   include profile::firewall
