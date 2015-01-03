@@ -1,15 +1,27 @@
 class profile::pe::master {
 
-  service { 'pe-httpd':
-    ensure => running,
-    enable => true,
+  if versioncmp($::pe_version, '3.7.0') >= 0 {
+    $puppetd = 'pe-puppetserver'
+    if ! $::servername { # when masterless
+    service { $puppetd:
+      ensure => running,
+      enable => true,
+    }
+    }
+  }
+  else {
+    $puppetd = 'pe-httpd'
+    service { $puppetd:
+      ensure => running,
+      enable => true,
+    }
   }
 
-  class { 'profile::r10k': } ~> Service['pe-httpd']
-  Class['r10k::config'] ~> Service['pe-httpd']
+  class { 'profile::r10k': } ~> Service[$puppetd]
+  Class['r10k::config'] ~> Service[$puppetd]
 
-  class { 'profile::hiera': } ~> Service['pe-httpd']
-  Class['::hiera'] ~> Service['pe-httpd']
+  class { 'profile::hiera': } ~> Service[$puppetd]
+  Class['::hiera'] ~> Service[$puppetd]
 
   include profile::pe::path
 
