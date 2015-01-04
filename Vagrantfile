@@ -4,17 +4,17 @@
 ENV['CONTROL'] ||= '/vagrant'
 
 Vagrant.configure('2') do |config|
-  config.pe_build.version = '3.3.2'
+  config.pe_build.version = '3.7.1'
   config.pe_build.download_root = 'http://s3.amazonaws.com/pe-builds/released/:version'
 
   config.vm.define :master do |master|
     master.vm.box = 'puppetlabs/centos-6.5-64-nocm'
     master.vm.provider 'virtualbox' do |vb|
-      vb.customize ['modifyvm', :id, '--memory', '2048']
+      vb.customize ['modifyvm', :id, '--memory', '4096']
       vb.customize ['modifyvm', :id, '--cpus', '1']
     end
     master.vm.provider 'vmware_fusion' do |v|
-      v.vmx['memsize'] = '2048'
+      v.vmx['memsize'] = '4096'
       v.vmx['numvcpus'] = '1'
     end
     master.vm.network :private_network, :auto_network => true
