@@ -1,3 +1,3 @@
-node 'master' {
+node 'master', 'puppet' {
   include role::pe::master
 }
