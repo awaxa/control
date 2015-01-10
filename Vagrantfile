@@ -22,6 +22,10 @@ Vagrant.configure(2) do |config|
     end
     master.vm.provision 'shell',
       inline: "/opt/puppet/bin/puppet apply --exec 'service {'iptables': ensure => 'stopped', enable => false }'"
+    master.vm.provision 'shell',
+      inline: '/opt/puppet/bin/puppet resource package git ensure=present'
+    master.vm.provision 'shell',
+      inline: 'git clone https://github.com/awaxa/control.git /tmp/control'
     master.vm.provision 'shell', path: 'scripts/bootstrap_r10k.sh'
   end
 
