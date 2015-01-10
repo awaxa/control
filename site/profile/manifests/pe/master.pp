@@ -38,10 +38,4 @@ class profile::pe::master {
     proto  => 'tcp',
     action => 'accept',
   }
-  firewall { '100 allow https access':
-    ensure => present,
-    port   => '443',
-    proto  => 'tcp',
-    action => 'accept',
-  }
 }
