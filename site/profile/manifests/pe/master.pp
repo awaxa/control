@@ -17,6 +17,9 @@ class profile::pe::master {
     }
   }
 
+  include pe_repo::platform::el_6_x86_64
+  include pe_repo::platform::ubuntu_1404_amd64
+
   class { 'profile::r10k': } ~> Service[$puppetd]
   Class['r10k::config'] ~> Service[$puppetd]
 
