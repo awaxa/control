@@ -4,7 +4,7 @@ class profile::r10k {
   $environmentpath = "${::settings::confdir}/environments"
 
   class { '::r10k':
-    version       => '1.4.0',
+    version       => '1.4.1',
     purgedirs     => [$environmentpath],
     sources       => {
       'puppet'    => {
