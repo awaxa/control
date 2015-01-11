@@ -65,3 +65,7 @@ mod 'aws',
 mod 'digitalocean',
   :git => 'https://github.com/garethr/garethr-digitalocean.git',
   :ref => '59d54dce46ca29265bf19ded9941b610fc76952a'
+
+mod 'githubkey',
+  :git => 'https://github.com/justicel/puppet-githubkey.git',
+  :ref => 'ee7da89a8ddd4515b72e840ad92cb2e548583e74'
