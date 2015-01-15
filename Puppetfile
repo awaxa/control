@@ -4,7 +4,7 @@ mod 'hiera',
 
 mod 'stdlib',
   :git => 'https://github.com/puppetlabs/puppetlabs-stdlib.git',
-  :ref => '4.5.0'
+  :ref => '4.5.1'
 
 mod 'ruby',
   :git => 'https://github.com/puppetlabs/puppetlabs-ruby.git',
