@@ -3,7 +3,7 @@
 [ -d /opt/puppet/bin ] && export PATH=/opt/puppet/bin:$PATH
 
 mkdir -p /etc/puppetlabs/facter/facts.d
-echo 'role=role::pe::master' > /etc/puppetlabs/facter/facts.d/role.txt
+echo 'role=pe::master' > /etc/puppetlabs/facter/facts.d/role.txt
 
 gem install r10k --no-rdoc --no-ri -v 1.4.0
 PUPPETFILE=/tmp/control/Puppetfile PUPPETFILE_DIR=/tmp/control/modules r10k puppetfile install --verbose
