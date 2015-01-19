@@ -15,4 +15,9 @@ class profile::base {
   ]:
     ensure => present,
   }
+
+  file { '/etc/motd':
+    ensure  => present,
+    content => '',
+  }
 }

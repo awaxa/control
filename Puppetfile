@@ -42,6 +42,10 @@ mod 'r10k',
   :git => 'https://github.com/acidprime/r10k.git',
   :ref => 'v2.5.1'
 
+mod 'gms',
+  :git => 'https://github.com/abrader/abrader-gms.git',
+  :ref => 'v0.0.4'
+
 mod 'ntp',
   :git => 'https://github.com/puppetlabs/puppetlabs-ntp.git',
   :ref => '3.3.0'
@@ -53,3 +57,11 @@ mod 'firewall',
 mod 'apt',
   :git => 'https://github.com/puppetlabs/puppetlabs-apt.git',
   :ref => '1.7.0'
+
+mod 'aws',
+  :git => 'https://github.com/puppetlabs/puppetlabs-aws.git',
+  :ref => 'v0.2.0'
+
+mod 'digitalocean',
+  :git => 'https://github.com/garethr/garethr-digitalocean.git',
+  :ref => '59d54dce46ca29265bf19ded9941b610fc76952a'

@@ -1,50 +1,40 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.configure(2) do |config|
-  config.pe_build.version = '3.7.1'
-  config.pe_build.download_root = 'http://s3.amazonaws.com/pe-builds/released/:version'
+mem = '2048'
+cpu = '2'
 
+require 'erb'
+
+@pe_username = 'admin'
+@pe_password = 'puppetlabs'
+@pe_version_string = '3.7.1'
+@cloud = 'vagrant'
+
+def userdata(vm)
+  ERB.new(File.new("site/profile/templates/#{vm}-pe-userdata.erb").read, nil, '%').result()
+end
+
+Vagrant.configure(2) do |config|
   config.vm.define :master do |master|
     master.vm.box = 'puppetlabs/centos-6.5-64-nocm'
-    master.vm.provider :virtualbox do |vb|
-      vb.customize ['modifyvm', :id, '--memory', '4096']
-      vb.customize ['modifyvm', :id, '--cpus', '2']
+    master.vm.provider :virtualbox do |v|
+      v.customize ['modifyvm', :id, '--memory', mem]
+      v.customize ['modifyvm', :id, '--cpus', cpu]
     end
     master.vm.provider :vmware_fusion do |v|
-      v.vmx['memsize'] = '4096'
-      v.vmx['numvcpus'] = '2'
+      v.vmx['memsize'] = mem
+      v.vmx['numvcpus'] = cpu
     end
     master.vm.network :private_network, :auto_network => true
     master.vm.provision :hosts
-    master.vm.provision :pe_bootstrap do |pe|
-      pe.role = :master
-    end
-    master.vm.provision 'shell',
-      inline: "/opt/puppet/bin/puppet apply --exec 'service {'iptables': ensure => 'stopped', enable => false }'"
-    master.vm.provision 'shell', path: 'scripts/bootstrap_control.sh'
-    master.vm.provision 'shell', path: 'scripts/bootstrap_r10k.sh'
+    master.vm.provision 'shell', inline: userdata('master')
   end
 
   config.vm.define :agent do |agent|
     agent.vm.box = 'puppetlabs/centos-6.5-64-nocm'
     agent.vm.network :private_network, :auto_network => true
     agent.vm.provision :hosts
-    agent.vm.provision :pe_bootstrap
-  end
-
-  config.vm.define :workstation, autostart: false do |workstation|
-    workstation.vm.box = 'puppetlabs/ubuntu-14.04-64-nocm'
-    unless ENV['GUI'] == 'true'
-      workstation.vm.provider 'virtualbox' do |vb|
-        vb.gui = true
-      end
-      workstation.vm.provider 'vmware_fusion' do |v|
-        v.gui = true
-      end
-    end
-    workstation.vm.provision 'shell', path: 'scripts/debian_poss.sh'
-    workstation.vm.provision 'shell', path: 'scripts/bootstrap_r10k.sh'
-    workstation.vm.provision 'shell', path: 'scripts/bootstrap_workstation.sh'
+    agent.vm.provision 'shell', inline: userdata('agent')
   end
 end

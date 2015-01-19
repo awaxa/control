@@ -1,3 +1,4 @@
 /.vagrant
 /.pe_build
 /modules
+/Gemfile.lock
