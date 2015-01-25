@@ -11,8 +11,8 @@ File {
 
 Package { allow_virtual => true }
 
-$_opt_puppet_bin = $::is_pe ? {
-  true  => '/opt/puppet/bin',
-  false => undef,
+$_pathappend = $::is_pe ? {
+  'true'  => ':/opt/puppet/bin',
+  default => '',
 }
-Exec { path => "${::path}:${_opt_puppet_bin}" }
+Exec { path => "${::path}${_pathappend}" }
