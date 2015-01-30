@@ -10,8 +10,12 @@ class profile::pe::master {
   }
   unless $_no_manage_puppetd {
     service { $puppetd:
-      ensure    => running,
-      enable    => true,
+      ensure => running,
+      enable => true,
+    }
+    service { 'pe-mcollective':
+      ensure => running,
+      enable => true,
     }
   }
 
