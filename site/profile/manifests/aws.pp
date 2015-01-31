@@ -33,6 +33,10 @@ class profile::aws {
         cidr     => '0.0.0.0/0',
       },{
         protocol => 'tcp',
+        port     => 8088,
+        cidr     => '0.0.0.0/0',
+      },{
+        protocol => 'tcp',
         port     => 8140,
         cidr     => '0.0.0.0/0',
       },{
