@@ -8,7 +8,7 @@ require 'erb'
 
 @pe_username = 'admin'
 @pe_password = 'puppetlabs'
-@pe_version_string = '3.7.1'
+@pe_version_string = '3.7.2'
 @cloud = 'vagrant'
 
 def userdata(vm)
