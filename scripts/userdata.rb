@@ -9,7 +9,7 @@ require 'erb'
 @cloud = ENV['CLOUD']
 
 def userdata(vm)
-  ERB.new(File.new("site/profile/templates/#{vm}-pe-userdata.erb").read, nil, '%').result()
+  ERB.new(File.new("#{File.dirname(__FILE__)}/../site/profile/templates/#{vm}-pe-userdata.erb").read, nil, '%').result()
 end
 
 ENV['vm'] ||= 'master'
