@@ -44,4 +44,12 @@ class profile::pe::master {
     proto  => 'tcp',
     action => 'accept',
   }
+
+  include profile::admins
+  $peadmin_ssh_authorized_key_defaults = {
+    ensure => present,
+    user   => 'peadmin',
+  }
+  create_resources(ssh_authorized_key, $profile::admins::keys, $peadmin_ssh_authorized_key_defaults)
+
 }
