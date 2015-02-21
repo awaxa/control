@@ -4,8 +4,6 @@ filebucket { 'main':
 }
 File {
   backup => 'main',
-  owner  => '0',
-  group  => '0',
   mode   => '0644',
 }
 
