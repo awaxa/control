@@ -73,3 +73,7 @@ mod 'githubkey',
 mod 'bucket_face',
   :git => 'https://github.com/dhgwilliam/puppet-face-bucket.git',
   :ref => '0.3.0'
+
+mod 'noop',
+  :git => 'https://github.com/trlinkin/trlinkin-noop.git',
+  :ref => '0.0.2'
