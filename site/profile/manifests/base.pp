@@ -27,4 +27,11 @@ class profile::base {
     ensure  => present,
     content => '',
   }
+
+  profile::homesick::repo { 'root dotfiles':
+    repo      => 'https://github.com/awaxa/dotfiles.git',
+    repo_name => 'dotfiles',
+    user      => 'root',
+  }
+
 }
