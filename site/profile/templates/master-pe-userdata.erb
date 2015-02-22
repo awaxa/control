@@ -97,6 +97,9 @@ function provision() {
   if [ -f /etc/redhat-release ]; then
     export breed='redhat'
     setenforce 0
+    sed -i s/^ZONE=.*/ZONE="Etc\/UTC"/ /etc/sysconfig/clock
+    rm -f /etc/localtime
+    ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime
   elif [ -f /etc/debian_version ]; then
     export breed='debian'
   else
