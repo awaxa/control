@@ -72,17 +72,13 @@ function install_puppetmaster() {
 
 function make_partition {
   parted -s "$1" unit s mkpart primary "$2" "$3"
-}
-
-function get_partition {
-  echo $(parted /dev/xvda unit s print free | grep 'Free Space' | tail -n 1)
+  partx -v -a "$1"
 }
 
 function format_partition {
-  partx -v -a /dev/xvda
-  mkfs.ext4 /dev/xvda2
-  mount /dev/xvda2 /opt
-  echo '/dev/xvda2              /opt                    ext4    defaults        0 2' >> /etc/fstab
+  mkfs.ext4 "$1"
+  echo "$1 $2 ext4 defaults 0 2" >> /etc/fstab
+  mount -a
 }
 
 function make_swapfile {
@@ -112,9 +108,22 @@ when 'aws' %>
   MD='http://169.254.169.254/latest/meta-data/'
   HOSTNAME=$(curl -fs $MD/public-hostname)
 
+  # unless /opt is mounted
   if ! grep -q ' /opt ' /proc/mounts ; then
-    make_partition /dev/xvda $(get_partition)
-    format_partition
+
+    # make xvdf1 opt if xvdf is present
+    if [ -b /dev/xvdf ] ; then
+      parted /dev/xvdf mklabel gpt
+      make_partition /dev/xvdf 2048 100%
+      format_partition /dev/xvdf1 /opt
+
+    # make xvda2 /opt
+    else
+      make_partition /dev/xvda $(parted /dev/xvda unit s print free | grep 'Free Space' | tail -n 1)
+      format_partition /dev/xvda2 /opt
+
+    fi
+
   fi
 <% else %>
   HOSTNAME=$(hostname)
