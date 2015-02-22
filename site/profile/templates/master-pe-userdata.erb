@@ -109,8 +109,10 @@ when 'aws' %>
   MD='http://169.254.169.254/latest/meta-data/'
   HOSTNAME=$(curl -fs $MD/public-hostname)
 
-  make_partition /dev/xvda $(get_partition)
-  format_partition
+  if ! grep -q ' /opt ' /proc/mounts ; then
+    make_partition /dev/xvda $(get_partition)
+    format_partition
+  fi
 <% else %>
   HOSTNAME=$(hostname)
 
