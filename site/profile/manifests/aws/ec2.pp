@@ -56,8 +56,7 @@ class profile::aws::ec2 {
     ensure        => $ensure,
     image_id      => $amis['rhel']['6'][$region],
     instance_type => 'm3.medium',
-    # need to attach xvdf manually 
-    # user_data     => template("${module_name}/master-pe-userdata.erb"),
+    user_data     => template("${module_name}/master-pe-userdata.erb"),
   }
 
 }

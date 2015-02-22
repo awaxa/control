@@ -105,9 +105,6 @@ function provision() {
 
 <% case @cloud
 when 'aws' %>
-  MD='http://169.254.169.254/latest/meta-data/'
-  HOSTNAME=$(curl -fs $MD/public-hostname)
-
   # unless /opt is mounted
   if ! grep -q ' /opt ' /proc/mounts ; then
 
@@ -126,10 +123,10 @@ when 'aws' %>
 
   fi
 <% else %>
-  HOSTNAME=$(hostname)
-
   make_swapfile
 <% end %>
+
+  HOSTNAME=$(hostname -f)
 
   install_puppetmaster
   export PATH=/opt/puppet/bin:$PATH
