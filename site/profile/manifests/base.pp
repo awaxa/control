@@ -1,5 +1,8 @@
 class profile::base {
 
+  if $::is_pe { include pe_staging }
+  include staging
+
   case $::osfamily {
     'redhat': { include profile::base::redhat }
   }
