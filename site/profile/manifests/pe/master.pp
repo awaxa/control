@@ -1,21 +1,31 @@
 class profile::pe::master {
 
   if versioncmp($::pe_version, '3.7.0') >= 0 {
-    # for PE >= 3.7.0, manage puppetd only during bootstrapping
-    if $::servername { $_no_manage_puppetd = true }
     $puppetd = 'pe-puppetserver'
+    unless $::servername { # for PE >= 3.7.0, manage puppetd only during bootstrapping
+      service { [
+        $puppetd,
+        'pe-mcollective',
+        'pe-console-services',
+      ]:
+        ensure => running,
+        enable => true,
+      }
+    }
+    file { '/etc/puppetlabs/console-services/conf.d/rbac-timeout.conf':
+      ensure  => file,
+      owner   => 'pe-console-services',
+      group   => 'pe-console-services',
+      mode    => '0640',
+      content => "rbac: {\n    session-timeout: 1400\n}\n",
+      notify  => Service['pe-console-services'],
+    }
   }
   else {
     $puppetd = 'pe-httpd'
-  }
-  unless $_no_manage_puppetd {
-    service { $puppetd:
-      ensure => running,
-      enable => true,
-    }
-    service { 'pe-mcollective':
-      ensure => running,
-      enable => true,
+    class { 'pe_console_timeout':
+      timeout_interval => '86400',
+      notify           => Service['pe-httpd']
     }
   }
 
