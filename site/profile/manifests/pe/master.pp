@@ -29,8 +29,6 @@ class profile::pe::master {
   class { 'profile::hiera': } ~> Service[$puppetd]
   Class['::hiera'] ~> Service[$puppetd]
 
-  include profile::pe::path
-
   include profile::firewall
   firewall { '100 allow puppet access':
     ensure => present,

@@ -1,4 +1,8 @@
 class profile::base {
+
+  case $::osfamily {
+    'redhat': { include profile::base::redhat }
+  }
   include ntp
 
   include profile::firewall
