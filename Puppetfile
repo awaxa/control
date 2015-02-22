@@ -69,3 +69,7 @@ mod 'digitalocean',
 mod 'githubkey',
   :git => 'https://github.com/justicel/puppet-githubkey.git',
   :ref => 'ee7da89a8ddd4515b72e840ad92cb2e548583e74'
+
+mod 'bucket_face',
+  :git => 'https://github.com/dhgwilliam/puppet-face-bucket.git',
+  :ref => '0.3.0'
