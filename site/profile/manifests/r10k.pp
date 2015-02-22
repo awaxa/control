@@ -15,15 +15,7 @@ class profile::r10k {
   }
 
   class { '::r10k':
-    version       => '1.4.1',
-    purgedirs     => [$environmentpath],
-    sources       => {
-      'puppet'    => {
-        'remote'  => $remote,
-        'basedir' => $environmentpath,
-        'prefix'  => false,
-      }
-    },
+    remote => $remote,
   }
 
   exec { 'r10k deploy':
