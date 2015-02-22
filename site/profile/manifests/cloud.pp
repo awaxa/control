@@ -1,5 +1,7 @@
 class profile::cloud {
 
+  $ensure = 'present'
+
   $pe_username = 'admin'
   $pe_password = 'puppetlabs'
   $pe_version_string = '3.7.2'

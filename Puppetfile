@@ -60,7 +60,7 @@ mod 'apt',
 
 mod 'aws',
   :git => 'https://github.com/puppetlabs/puppetlabs-aws.git',
-  :ref => 'v0.2.0'
+  :ref => 'master'
 
 mod 'digitalocean',
   :git => 'https://github.com/garethr/garethr-digitalocean.git',
