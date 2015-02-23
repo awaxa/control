@@ -73,3 +73,7 @@ mod 'githubkey',
 mod 'bucket_face',
   :git => 'https://github.com/dhgwilliam/puppet-face-bucket.git',
   :ref => '0.3.0'
+
+mod 'staging',
+  :git => 'https://github.com/nanliu/puppet-staging.git',
+  :ref => '1.0.4'
